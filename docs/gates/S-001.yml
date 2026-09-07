@@ -15,5 +15,5 @@ findings:
     outcome: recorded
 escaped: null
 blocked: null
-pr: null
+pr: https://github.com/drsinghal92/movie-app/pull/1
 notes: All three ACs enforced at the query layer (src/lib/years.ts) and proven by named Vitest + Playwright tests, including a real-browser click-through for AC2.
