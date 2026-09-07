@@ -8,8 +8,8 @@ epics:
         title: Browse years and their top-10 lists
         depends_on: []
         autonomy: unattended
-        status: in-review
-        gate: null
+        status: done
+        gate: docs/gates/S-001.yml
         pr: https://github.com/drsinghal92/movie-app/pull/1
       - id: S-002
         title: View a movie's detail page
@@ -33,9 +33,9 @@ epics:
         title: Founder login
         depends_on: []
         autonomy: unattended
-        status: in-progress
-        gate: null
-        pr: null
+        status: done
+        gate: docs/gates/S-004.yml
+        pr: https://github.com/drsinghal92/movie-app/pull/2
       - id: S-005
         title: Add and edit a yearly top-10 list
         depends_on: [S-004]
