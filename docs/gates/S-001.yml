@@ -1,0 +1,19 @@
+story: S-001
+title: Browse years and their top-10 lists
+verdict: PASS
+gated_at: 2026-09-07 12:00
+tests: green
+failing_cases: []
+acceptance_met: true
+ui_verified: PASS
+security: skipped
+review: skipped
+findings:
+  - source: qa
+    severity: low
+    what: "No explicit e2e case asserts a 404/not-found UI for an absent year id on the detail route, code/frontend/src/app/years/[year]/page.tsx"
+    outcome: recorded
+escaped: null
+blocked: null
+pr: null
+notes: All three ACs enforced at the query layer (src/lib/years.ts) and proven by named Vitest + Playwright tests, including a real-browser click-through for AC2.

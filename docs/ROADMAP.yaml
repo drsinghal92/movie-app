@@ -8,7 +8,7 @@ epics:
         title: Browse years and their top-10 lists
         depends_on: []
         autonomy: unattended
-        status: todo
+        status: in-progress
         gate: null
         pr: null
       - id: S-002
