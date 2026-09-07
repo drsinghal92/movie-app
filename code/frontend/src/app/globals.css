@@ -2,6 +2,11 @@
    source of truth for values, per docs/DESIGN.md section 2). Not forked
    logic, just the same custom properties made available to the app so
    tailwind.config.ts's color/font mappings resolve. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tokens per docs/style-guide.html, the one source of the actual values. */
 :root {
   --accent: #e50914;
   --accent-2: #f5c518;
@@ -50,8 +55,9 @@ body {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

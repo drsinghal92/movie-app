@@ -8,9 +8,9 @@ epics:
         title: Browse years and their top-10 lists
         depends_on: []
         autonomy: unattended
-        status: todo
+        status: in-review
         gate: null
-        pr: null
+        pr: https://github.com/drsinghal92/movie-app/pull/1
       - id: S-002
         title: View a movie's detail page
         depends_on: [S-001]
