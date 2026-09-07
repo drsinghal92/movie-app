@@ -15,9 +15,9 @@ epics:
         title: View a movie's detail page
         depends_on: [S-001]
         autonomy: unattended
-        status: todo
-        gate: null
-        pr: null
+        status: in-review
+        gate: docs/gates/S-002.yml
+        pr: https://github.com/drsinghal92/movie-app/pull/3
       - id: S-003
         title: Search and filter movies
         depends_on: [S-001]

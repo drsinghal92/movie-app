@@ -6,7 +6,14 @@ import { defineConfig, devices } from "@playwright/test";
 // (real form submit, real click, real drag), never a substitute API call.
 export default defineConfig({
   testDir: "./tests/e2e",
-  fullyParallel: true,
+  // Specs share one real Postgres instance and each seeds/tears down its own
+  // fixture rows (year 1994 in more than one file), so full parallelism
+  // across spec files races them against each other's resets. Serial
+  // execution trades speed for a suite that reflects real defects instead of
+  // cross-file contention (S-002 surfaced this once a second spec file
+  // shared fixture data with browse.spec.ts).
+  fullyParallel: false,
+  workers: 1,
   retries: process.env.CI ? 1 : 0,
   reporter: "line",
   use: {

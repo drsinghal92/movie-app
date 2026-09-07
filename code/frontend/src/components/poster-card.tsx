@@ -1,23 +1,26 @@
 // DESIGN.md 3.2: rank badge, title, genre/meta, poster is the whole hit
-// target. Movie detail (S-002) is out of this story's scope, so the card
-// links to the year page's own movie for now via a data attribute only,
-// no href to a route that does not exist yet.
+// target, linking to the movie's detail page (S-002).
+import Link from "next/link";
+
 export function PosterCard({
+  id,
   rank,
   title,
   poster,
   genre,
 }: {
+  id: string;
   rank: number;
   title: string;
   poster: string;
   genre: string;
 }) {
   return (
-    <div
+    <Link
+      href={`/movies/${id}`}
       data-testid="poster-card"
       data-rank={rank}
-      className="group relative overflow-hidden rounded-md border border-hairline bg-dark-elev shadow-[var(--sh-card)] transition-transform duration-150 ease-[var(--e-standard)] hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[var(--sh-hover)]"
+      className="group relative block overflow-hidden rounded-md border border-hairline bg-dark-elev shadow-[var(--sh-card)] transition-transform duration-150 ease-[var(--e-standard)] hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[var(--sh-hover)]"
     >
       <div className="relative aspect-[2/3] w-full bg-dark-elev-2">
         {poster ? (
@@ -36,6 +39,6 @@ export function PosterCard({
         <div className="truncate text-sm font-semibold">{title}</div>
         <div className="truncate text-xs text-muted">{genre}</div>
       </div>
-    </div>
+    </Link>
   );
 }

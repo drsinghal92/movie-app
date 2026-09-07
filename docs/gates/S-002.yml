@@ -1,0 +1,22 @@
+story: S-002
+title: View a movie's detail page
+verdict: PASS
+gated_at: 2026-09-08 00:35
+tests: green
+failing_cases: []
+acceptance_met: true
+ui_verified: PASS
+security: skipped
+review: skipped
+findings:
+  - source: qa
+    severity: low
+    what: "movie-detail.spec.ts fixture collisions required a suite-wide fullyParallel:false/workers:1/fileParallelism:false change across playwright.config.ts and vitest.config.ts, a broad blast-radius fix for a real defect; worth revisiting if the suite grows and serial execution becomes a bottleneck"
+    outcome: recorded
+escaped: null
+blocked: null
+pr: https://github.com/drsinghal92/movie-app/pull/3
+notes: 13/13 unit and 9/9 e2e pass; all four acceptance criteria proven by tests whose assertions fail if the underlying render logic is removed; UI verification clause satisfied via a real poster-card click-through. Security and adversarial review skipped, sketch mode.
+waiver:
+  reason: null
+  approved_by: null

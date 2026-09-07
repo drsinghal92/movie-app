@@ -54,6 +54,7 @@ export default async function YearPage({
         {data.movies.map((movie) => (
           <PosterCard
             key={movie.id}
+            id={movie.id}
             rank={movie.rank}
             title={movie.title}
             poster={movie.poster}
