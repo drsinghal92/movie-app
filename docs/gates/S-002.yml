@@ -15,7 +15,7 @@ findings:
     outcome: recorded
 escaped: null
 blocked: null
-pr: null
+pr: https://github.com/drsinghal92/movie-app/pull/3
 notes: 13/13 unit and 9/9 e2e pass; all four acceptance criteria proven by tests whose assertions fail if the underlying render logic is removed; UI verification clause satisfied via a real poster-card click-through. Security and adversarial review skipped, sketch mode.
 waiver:
   reason: null
