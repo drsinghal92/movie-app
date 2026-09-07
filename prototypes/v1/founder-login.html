@@ -1,0 +1,72 @@
+<!-- KaizenOS prototype, disposable, never imported into code/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Founder login — Movie Info App</title>
+<link rel="icon" href="data:," />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --accent:#E50914; --accent-2:#F5C518;
+    --ink:#F5F5F1; --dark:#0A0A0C; --dark-elev:#17171C;
+    --muted:rgba(245,245,241,0.66); --faint:rgba(245,245,241,0.42);
+    --hairline:rgba(245,245,241,0.12);
+    --font-heading:'Bebas Neue',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --s-2xs:4px; --s-xs:8px; --s-sm:16px; --s-md:32px; --s-lg:64px; --s-xl:96px;
+    --r-sm:4px; --r-md:8px;
+    --sh-hover:0 10px 24px rgba(0,0,0,0.60);
+    --d-fast:150ms; --e-standard:cubic-bezier(0.2,0.7,0,1);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:var(--font-body); color:var(--ink); background:var(--dark); line-height:1.55; }
+  a { color:inherit; text-decoration:none; }
+  .accent-bar { height:4px; background:var(--accent); }
+  header.nav { display:flex; align-items:center; justify-content:space-between; padding:var(--s-sm) var(--s-lg); border-bottom:1px solid var(--hairline); }
+  header.nav .brand { display:flex; align-items:center; gap:var(--s-xs); }
+  header.nav .mark { width:26px; height:26px; border-radius:4px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-size:15px; }
+  header.nav .name { font-family:var(--font-heading); font-size:20px; letter-spacing:0.02em; }
+  header.nav nav a { color:var(--muted); font-size:14px; }
+  header.nav nav a:hover { color:var(--ink); }
+  .center-wrap { max-width:400px; margin:0 auto; padding:var(--s-xl) var(--s-lg); }
+  .eyebrow { font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-2); display:block; margin-bottom:var(--s-xs); }
+  h1 { font-family:var(--font-heading); font-weight:400; font-size:36px; margin:0 0 var(--s-xs); }
+  .sub { color:var(--muted); font-size:14px; margin:0 0 var(--s-md); }
+  .error-note { border-left:3px solid var(--accent); background:rgba(229,9,20,0.10); padding:var(--s-sm) var(--s-md); border-radius:0 var(--r-sm) var(--r-sm) 0; margin-bottom:var(--s-md); font-size:14px; color:var(--muted); }
+  .error-note b { display:block; color:var(--ink); font-weight:600; margin-bottom:4px; }
+  label { display:block; font-size:13px; font-weight:600; margin-bottom:6px; color:var(--muted); }
+  input[type=email], input[type=password] { width:100%; height:46px; border-radius:var(--r-sm); border:1px solid var(--hairline); background:var(--dark-elev); color:var(--ink); padding:0 var(--s-sm); font-size:15px; font-family:var(--font-body); margin-bottom:var(--s-sm); }
+  input.invalid { border-color:var(--accent); }
+  input:focus { outline:2px solid var(--accent); outline-offset:1px; }
+  .btn { width:100%; font-family:var(--font-body); font-size:15px; font-weight:600; height:48px; border-radius:var(--r-sm); border:none; cursor:pointer; background:var(--accent); color:#fff; margin-top:var(--s-xs); transition:transform var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard); }
+  .btn:hover { transform:translateY(-2px); box-shadow:var(--sh-hover); }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="mark">M</span><span class="name">MOVIE INFO APP</span>
+  </a>
+  <nav><a href="index.html">Back to browsing</a></nav>
+</header>
+<div class="center-wrap">
+  <span class="eyebrow">Protected area</span>
+  <h1>Founder login</h1>
+  <p class="sub">Sign in to add or edit yearly lists. This area is not reachable without a valid login.</p>
+
+  <div class="error-note"><b>Incorrect email or password</b>Check your credentials and try again.</div>
+
+  <label for="femail">Email</label>
+  <input type="email" id="femail" class="invalid" value="founder@example.com" />
+  <label for="fpw">Password</label>
+  <input type="password" id="fpw" class="invalid" value="wrongpass" />
+  <button class="btn" onclick="location.href='founder-edit.html'">Log in</button>
+</div>
+</body>
+</html>
+</content>

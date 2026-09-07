@@ -1,0 +1,63 @@
+project: movie-app
+epics:
+  - id: E01
+    title: Browse the yearly lists
+    goal: A visitor can pick a year and see the 10 best movies for that year, then open any one for detail.
+    stories:
+      - id: S-001
+        title: Browse years and their top-10 lists
+        depends_on: []
+        autonomy: unattended
+        status: todo
+        gate: null
+        pr: null
+      - id: S-002
+        title: View a movie's detail page
+        depends_on: [S-001]
+        autonomy: unattended
+        status: todo
+        gate: null
+        pr: null
+      - id: S-003
+        title: Search and filter movies
+        depends_on: [S-001]
+        autonomy: unattended
+        status: todo
+        gate: null
+        pr: null
+  - id: E02
+    title: Founder curation
+    goal: The founder can maintain the yearly top-10 lists without developer help.
+    stories:
+      - id: S-004
+        title: Founder login
+        depends_on: []
+        autonomy: unattended
+        status: todo
+        gate: null
+        pr: null
+      - id: S-005
+        title: Add and edit a yearly top-10 list
+        depends_on: [S-004]
+        autonomy: unattended
+        status: todo
+        gate: null
+        pr: null
+  - id: E03
+    title: Accounts and watchlist
+    goal: A visitor can create an account and keep a personal watchlist of movies.
+    stories:
+      - id: S-006
+        title: Create an account and log in
+        depends_on: []
+        autonomy: unattended
+        status: todo
+        gate: null
+        pr: null
+      - id: S-007
+        title: Save a movie to a watchlist
+        depends_on: [S-002, S-006]
+        autonomy: unattended
+        status: todo
+        gate: null
+        pr: null

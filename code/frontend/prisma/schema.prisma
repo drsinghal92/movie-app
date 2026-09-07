@@ -1,0 +1,72 @@
+// Schema per docs/ARCHITECTURE.md section 2. Scaffold only, no data yet.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  VISITOR
+  FOUNDER
+}
+
+model User {
+  id           String           @id @default(cuid())
+  email        String           @unique
+  passwordHash String
+  role         Role             @default(VISITOR)
+  createdAt    DateTime         @default(now())
+  watchlist    WatchlistEntry[]
+}
+
+model Year {
+  id        String   @id @default(cuid())
+  year      Int      @unique
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  movies    Movie[]
+}
+
+model Movie {
+  id             String           @id @default(cuid())
+  yearId         String
+  year           Year             @relation(fields: [yearId], references: [id])
+  rank           Int
+  title          String
+  poster         String
+  synopsis       String
+  rating         Float
+  cast           String[]
+  genre          String
+  personalNote   String
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  streamingLinks StreamingLink[]
+  watchlistedBy  WatchlistEntry[]
+
+  @@unique([yearId, rank])
+}
+
+model StreamingLink {
+  id       String @id @default(cuid())
+  movieId  String
+  movie    Movie  @relation(fields: [movieId], references: [id])
+  provider String
+  url      String
+}
+
+model WatchlistEntry {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  movieId   String
+  movie     Movie    @relation(fields: [movieId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, movieId])
+}

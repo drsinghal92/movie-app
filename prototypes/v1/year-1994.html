@@ -1,0 +1,141 @@
+<!-- KaizenOS prototype, disposable, never imported into code/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>1994 — Top 10 — Movie Info App</title>
+<link rel="icon" href="data:," />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --accent:#E50914; --accent-2:#F5C518;
+    --ink:#F5F5F1; --dark:#0A0A0C; --dark-elev:#17171C;
+    --muted:rgba(245,245,241,0.66); --faint:rgba(245,245,241,0.42);
+    --hairline:rgba(245,245,241,0.12);
+    --font-heading:'Bebas Neue',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --s-2xs:4px; --s-xs:8px; --s-sm:16px; --s-md:32px; --s-lg:64px; --s-xl:96px;
+    --r-sm:4px; --r-md:8px;
+    --sh-card:0 4px 12px rgba(0,0,0,0.50);
+    --sh-hover:0 10px 24px rgba(0,0,0,0.60);
+    --d-fast:150ms; --e-standard:cubic-bezier(0.2,0.7,0,1);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:var(--font-body); color:var(--ink); background:var(--dark); line-height:1.55; }
+  a { color:inherit; text-decoration:none; }
+  .accent-bar { height:4px; background:var(--accent); }
+  header.nav { display:flex; align-items:center; justify-content:space-between; padding:var(--s-sm) var(--s-lg); border-bottom:1px solid var(--hairline); }
+  header.nav .brand { display:flex; align-items:center; gap:var(--s-xs); }
+  header.nav .mark { width:26px; height:26px; border-radius:4px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-size:15px; }
+  header.nav .name { font-family:var(--font-heading); font-size:20px; letter-spacing:0.02em; }
+  header.nav nav { display:flex; gap:var(--s-md); align-items:center; font-size:14px; font-weight:500; }
+  header.nav nav a { color:var(--muted); transition:color var(--d-fast) var(--e-standard); }
+  header.nav nav a:hover, header.nav nav a.active { color:var(--ink); }
+  header.nav nav a.cta { color:var(--ink); border:1.5px solid rgba(255,255,255,0.28); border-radius:var(--r-sm); padding:8px 16px; }
+  .wrap { max-width:1100px; margin:0 auto; padding:var(--s-lg) var(--s-lg) var(--s-xl); }
+  .crumbs { font-size:13px; color:var(--faint); margin-bottom:var(--s-sm); }
+  .crumbs a:hover { color:var(--muted); }
+  .d { font-family:var(--font-heading); font-size:88px; line-height:0.95; margin:0 0 var(--s-lg); }
+  .list { display:flex; flex-direction:column; gap:var(--s-sm); }
+  .row { display:flex; gap:var(--s-md); align-items:center; background:var(--dark-elev); border:1px solid var(--hairline); border-radius:var(--r-md); padding:var(--s-sm) var(--s-md); box-shadow:var(--sh-card); transition:transform var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard); }
+  .row:hover { transform:translateY(-3px); box-shadow:var(--sh-hover); }
+  .rank { font-family:var(--font-heading); font-size:44px; width:56px; text-align:center; color:var(--faint); flex-shrink:0; }
+  .poster-thumb { width:64px; height:94px; border-radius:var(--r-sm); background:linear-gradient(160deg,#2a2a33,#111114); flex-shrink:0; }
+  .info { flex:1; min-width:0; }
+  .info .title { font-size:17px; font-weight:600; margin-bottom:2px; }
+  .info .meta { font-size:13px; color:var(--faint); }
+  .rating-pill { display:inline-flex; align-items:center; gap:4px; background:rgba(245,197,24,0.12); color:var(--accent-2); border:1px solid rgba(245,197,24,0.30); border-radius:20px; padding:3px 10px; font-size:12px; font-weight:600; flex-shrink:0; }
+  footer.site { border-top:1px solid var(--hairline); padding:var(--s-md) var(--s-lg); display:flex; justify-content:space-between; color:var(--faint); font-size:12px; }
+  footer.site a { color:var(--faint); }
+  footer.site a:hover { color:var(--muted); }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="mark">M</span><span class="name">MOVIE INFO APP</span>
+  </a>
+  <nav>
+    <a href="index.html" class="active">Browse</a>
+    <a href="search.html">Search</a>
+    <a href="watchlist.html">Watchlist</a>
+    <a href="signup-login.html" class="cta">Sign up / Log in</a>
+  </nav>
+</header>
+<div class="wrap">
+  <div class="crumbs"><a href="index.html">Browse</a> / 1994</div>
+  <h1 class="d">TOP 10 · 1994</h1>
+  <div class="list">
+    <a class="row" href="movie-detail.html">
+      <span class="rank">1</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">The Shawshank Redemption</div><div class="meta">Drama · 142 min</div></div>
+      <span class="rating-pill">★ 9.3</span>
+    </a>
+    <a class="row" href="movie-detail.html">
+      <span class="rank">2</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">Pulp Fiction</div><div class="meta">Crime · 154 min</div></div>
+      <span class="rating-pill">★ 8.9</span>
+    </a>
+    <a class="row" href="movie-detail.html">
+      <span class="rank">3</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">Forrest Gump</div><div class="meta">Drama · 142 min</div></div>
+      <span class="rating-pill">★ 8.8</span>
+    </a>
+    <a class="row" href="movie-detail-no-links.html">
+      <span class="rank">4</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">Léon: The Professional</div><div class="meta">Action · 110 min</div></div>
+      <span class="rating-pill">★ 8.5</span>
+    </a>
+    <a class="row" href="movie-detail.html">
+      <span class="rank">5</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">The Lion King</div><div class="meta">Animation · 88 min</div></div>
+      <span class="rating-pill">★ 8.5</span>
+    </a>
+    <a class="row" href="movie-detail.html">
+      <span class="rank">6</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">Heat</div><div class="meta">Crime · 170 min</div></div>
+      <span class="rating-pill">★ 8.3</span>
+    </a>
+    <a class="row" href="movie-detail.html">
+      <span class="rank">7</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">Speed</div><div class="meta">Action · 116 min</div></div>
+      <span class="rating-pill">★ 7.3</span>
+    </a>
+    <a class="row" href="movie-detail.html">
+      <span class="rank">8</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">Interview with the Vampire</div><div class="meta">Horror · 123 min</div></div>
+      <span class="rating-pill">★ 7.6</span>
+    </a>
+    <a class="row" href="movie-detail.html">
+      <span class="rank">9</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">Four Weddings and a Funeral</div><div class="meta">Comedy · 117 min</div></div>
+      <span class="rating-pill">★ 7.1</span>
+    </a>
+    <a class="row" href="movie-detail.html">
+      <span class="rank">10</span>
+      <div class="poster-thumb"></div>
+      <div class="info"><div class="title">Clear and Present Danger</div><div class="meta">Thriller · 141 min</div></div>
+      <span class="rating-pill">★ 6.9</span>
+    </a>
+  </div>
+</div>
+<footer class="site">
+  <span>Movie Info App — a personally curated top-10, year by year.</span>
+  <a href="founder-login.html">Founder area</a>
+</footer>
+</body>
+</html>
+</content>

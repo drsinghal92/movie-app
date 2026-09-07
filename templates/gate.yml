@@ -1,0 +1,32 @@
+story: S-001            # the epic-level record written under --all uses `epic: E0N` here instead
+title: <story title>
+verdict: PASS            # PASS | CONCERNS | FAIL | BLOCKED | WAIVED. QA's verdict on the story.
+gated_at: <YYYY-MM-DD HH:MM>
+tests: green             # green | red | n/a
+failing_cases: []        # when red, the failing test titles verbatim, e.g. ["S-001-AC2 rejects an oversized file"]
+acceptance_met: true
+ui_verified: n/a         # PASS | FAIL | n/a. PASS = a real browser end-to-end test drove the actual input path. n/a = story is not ui_surface.
+security: n/a            # PASS | WARN | BLOCKED | skipped | n/a. skipped = the tier or the surface turned the pass off.
+review: n/a              # ship | nits | needs-work | skipped | n/a. The adversarial reviewer's own verdict.
+findings: []             # every finding any layer raised, appended never replaced, so a failed
+                         # cycle survives a later pass. One entry per finding:
+                         #   - source: qa        # checks | qa | security | review | ci
+                         #     severity: high    # high | medium | low
+                         #     what: "revoke fires before download starts, src/lib/blob.ts:41"
+                         #     outcome: fixed-in-loop   # fixed-in-loop | recorded | follow-up S-031 | accepted | waived | decision-owed
+                         #                            decision-owed is the one a human still owes a call on.
+                         #                            Every Notes entry tagged decision-owed lands here,
+                         #                            swept at step 12 so a reviewer-raised call is not missed.
+escaped: null            # only when this gate closes a defect that reached a human. Then:
+                         #   fixes: S-024      # the story that shipped the defect, or none if the code predates the pipeline
+                         #   found_by: user    # user | operator | ci | monitoring | reviewer
+                         #   missed_by: qa     # checks | qa | security | review | spec | none
+                         #   reported: <YYYY-MM-DD>
+blocked: null            # only when verdict is BLOCKED. Written by scripts/story.mjs block. Then:
+                         #   at_stage: qa      # plan | build | checks | qa | security | review | pr | record
+                         #   reason: "<one line>"
+pr: null
+notes: <one line summary>
+waiver:                  # only when verdict is WAIVED
+  reason: null
+  approved_by: null

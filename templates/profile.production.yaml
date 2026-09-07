@@ -1,0 +1,65 @@
+# KaizenOS PRODUCTION preset.
+# Copy to docs/profile.yaml for shipped work. Full gates. Jira optional.
+
+project: production-app
+mode: production             # every gate runs
+autonomy: stop-at-pr
+default_story_autonomy: unattended
+confidence_threshold: 7
+
+interaction:
+  mode: guided               # founder phases pressure-test each section. shipped work earns the extra rigor. --yolo overrides per run.
+
+models:
+  planner: opus
+  builder: sonnet            # builds on Sonnet 5
+  qa: sonnet
+  reviewer: opus             # strongest adversarial reviewer, different family from the builder
+  security: sonnet
+  narrator: haiku
+
+# What a run costs. Every event in logs/events.jsonl carries the measured token
+# count, tool-use count and duration the Agent tool reports back when a subagent
+# finishes. The dollar figure is the one derived number here, so it is always
+# labelled estimated and never presented as measured. Rates are blended per
+# million tokens, because the tool reports one token figure rather than a split.
+cost:
+  currency: USD
+  rates:
+    opus: 30.00
+    sonnet: 6.00
+    haiku: 1.00
+
+overnight:
+  local: true
+  cloud: true
+
+git:
+  host: github
+  remote: null
+  branch_prefix: story/
+  default_branch: main
+
+tracking:
+  backend: local             # switch to jira or both to mirror epics, stories, and gates
+  jira:
+    enabled: false
+    url: null
+    project: null
+
+qa:
+  retries: 2
+  security_review_on:
+    - auth
+    - payments
+    - input-handling
+    - data-access
+
+review:
+  pr_reviewer: true
+  rounds: 1                  # adversarial review passes per story. 1 = one pass. 2 = one confirmation pass
+                             # confined to round 1's highs. Never more, an Opus pass over a clean
+                             # diff always finds something, so without a cap it never converges.
+  action_floor: high         # which severity buys a build round. high routes back now, medium goes
+                             # back once in one batch after the last gate layer, low is recorded only.
+  merge: human

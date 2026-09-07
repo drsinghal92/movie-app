@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Style guide</title>
+<link rel="icon" href="data:," />
+<!--
+  KaizenOS style guide. One self-contained file, no build, no site. Open it in a browser.
+  The designer copies this to docs/style-guide.html and swaps the :root tokens and the samples
+  to match docs/DESIGN.md. Defaults below are KaizenRise Design System v4.
+  This is a checklist you can see. If a section reads thin, that is a design gap to fill.
+  Motion beyond micro-interactions is a website concern and lives per site build, not here.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --orange:#EF4209; --indigo:#18206F;
+    --ink:#0B0D1A; --dark:#0E1124; --dark-elev:#181C33;
+    --light:#F7EBE7; --white:#FFFFFC;
+    --muted:rgba(11,13,26,0.62); --faint:rgba(11,13,26,0.40);
+    --hairline:rgba(11,13,26,0.10);
+    --font-heading:'Plus Jakarta Sans',system-ui,sans-serif;
+    --font-body:'DM Sans',system-ui,sans-serif;
+    --font-mono:'JetBrains Mono',ui-monospace,monospace;
+    --s-2xs:4px; --s-xs:8px; --s-sm:16px; --s-md:32px; --s-lg:64px; --s-xl:96px; --s-2xl:128px;
+    --r-sm:4px; --r-md:8px; --r-lg:16px;
+    --sh-ring:0 0 0 1px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.10);
+    --sh-card:0 4px 8px rgba(0,0,0,0.08);
+    --sh-hover:0 8px 16px rgba(0,0,0,0.10);
+    --d-fast:150ms; --d-base:250ms; --e-standard:cubic-bezier(0.2,0.7,0,1);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:var(--font-body); color:var(--ink); background:var(--light); line-height:1.55; }
+  .accent { height:5px; background:var(--orange); }
+  .wrap { max-width:960px; margin:0 auto; padding:var(--s-xl) var(--s-lg) var(--s-2xl); }
+  header.top { display:flex; align-items:center; gap:var(--s-xs); }
+  header.top svg { height:24px; width:auto; }
+  header.top .name { font-family:var(--font-heading); font-weight:700; font-size:20px; letter-spacing:-0.02em; }
+  header.top .tag { color:var(--faint); font-size:12px; }
+  .purpose { color:var(--muted); font-size:14px; margin:var(--s-xs) 0 0; max-width:60ch; }
+  .eyebrow { font-family:var(--font-body); font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--orange); display:block; margin:var(--s-2xl) 0 var(--s-xs); }
+  h1,h2,h3,h4 { font-family:var(--font-heading); font-weight:600; letter-spacing:-0.02em; margin:0; }
+  .row { display:flex; align-items:baseline; gap:var(--s-sm); padding:var(--s-sm) 0; border-bottom:1px solid var(--hairline); }
+  .row .sample { flex:1; min-width:0; }
+  .chip { font-family:var(--font-mono); font-size:11px; color:var(--muted); background:rgba(24,32,111,0.07); padding:3px 8px; border-radius:var(--r-sm); white-space:nowrap; align-self:center; }
+  .d { font-size:72px; line-height:1; letter-spacing:-0.04em; font-weight:700; }
+  .lead { font-size:18px; color:var(--muted); max-width:60ch; }
+  .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:var(--s-sm); }
+  .sw { border:1px solid var(--hairline); border-radius:var(--r-md); overflow:hidden; background:var(--white); }
+  .sw .chipcolor { height:64px; }
+  .sw .meta { padding:var(--s-xs) var(--s-sm); font-size:13px; }
+  .sw .meta b { font-family:var(--font-heading); display:block; }
+  .sw .meta code { font-family:var(--font-mono); color:var(--muted); font-size:12px; }
+  .btns { display:flex; flex-wrap:wrap; gap:var(--s-sm); align-items:center; }
+  .btn { font-family:var(--font-body); font-size:14px; font-weight:500; height:48px; padding:0 24px; border-radius:var(--r-sm); border:none; cursor:pointer; display:inline-flex; align-items:center; gap:var(--s-xs); transition:transform var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard); }
+  .btn-primary { background:var(--orange); color:var(--white); }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:var(--sh-hover); }
+  .btn-secondary { background:transparent; color:var(--indigo); border:1.5px solid var(--indigo); }
+  .btn-ghost { background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,0.30); }
+  .btn:disabled { opacity:0.4; cursor:not-allowed; }
+  .darkstrip { background:var(--dark); border-radius:var(--r-md); padding:var(--s-md); margin-top:var(--s-sm); }
+  .scale { display:flex; flex-direction:column; gap:var(--s-xs); }
+  .scale .bar { display:flex; align-items:center; gap:var(--s-sm); }
+  .scale .bar span.b { height:16px; background:var(--indigo); border-radius:2px; }
+  .boxes { display:flex; gap:var(--s-md); flex-wrap:wrap; }
+  .box { width:120px; height:80px; background:var(--white); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:12px; color:var(--muted); }
+  .states { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s-sm); }
+  .state { background:var(--white); border-radius:var(--r-md); box-shadow:var(--sh-ring); padding:var(--s-md); min-height:120px; }
+  .state .lbl { font-family:var(--font-mono); font-size:11px; color:var(--faint); display:block; margin-bottom:var(--s-xs); }
+  .state.empty { display:flex; align-items:center; justify-content:center; color:var(--faint); font-size:14px; text-align:center; }
+  .sk { height:12px; border-radius:3px; background:rgba(11,13,26,0.08); margin-bottom:var(--s-xs); animation:pulse 1.4s var(--e-standard) infinite; }
+  .sk.short { width:60%; }
+  @keyframes pulse { 50% { opacity:0.45; } }
+  .errnote { border-left:3px solid var(--ink); padding-left:var(--s-sm); color:var(--muted); font-size:14px; }
+  .errnote b { color:var(--ink); font-family:var(--font-heading); display:block; }
+  .demo-card { background:var(--white); border-radius:var(--r-md); box-shadow:var(--sh-ring); padding:var(--s-md); transition:transform var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard); max-width:320px; }
+  .demo-card:hover { transform:translateY(-2px); box-shadow:var(--sh-hover); }
+  .note { border-left:3px solid var(--orange); background:rgba(239,66,9,0.10); padding:var(--s-sm) var(--s-md); border-radius:0 var(--r-sm) var(--r-sm) 0; margin-top:var(--s-sm); font-size:14px; }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition:none !important; animation:none !important; } }
+  @media (max-width:768px){ .wrap{ padding:var(--s-lg) var(--s-md); } .d{ font-size:44px; } .states{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="accent"></div>
+<div class="wrap">
+  <header class="top">
+    <svg viewBox="0 0 73 58" xmlns="http://www.w3.org/2000/svg" aria-label="KaizenRise"><path d="M37.5795 57.2715V22.7139H46.0384L34.6859 10.8169L23.3334 22.7139L31.7337 22.7139V25.5374C31.7337 43.0635 17.5261 57.2712 0 57.2713L1.64266e-06 19.6917H0.0863986L0.0863994 0L56.7005 2.47468e-06L72.5673 22.6641L51.7304 22.6643C64.0531 28.1042 72.6538 40.4308 72.6538 54.7665V57.2715L37.5795 57.2715Z" fill="#EF4209"></path></svg>
+    <span class="name">PROJECT</span><span class="tag">style guide</span>
+  </header>
+  <p class="purpose">The design at a glance. Every section a product should define is here. If one reads thin, that is a gap to fill before building.</p>
+
+  <section>
+    <span class="eyebrow">Typography</span>
+    <div class="row"><div class="sample"><div class="d">Display</div></div><span class="chip">display 72 / 700</span></div>
+    <div class="row"><div class="sample"><h1>Heading one</h1></div><span class="chip">h1 52 / 600</span></div>
+    <div class="row"><div class="sample"><h2>Heading two</h2></div><span class="chip">h2 36 / 600</span></div>
+    <div class="row"><div class="sample"><h3>Heading three</h3></div><span class="chip">h3 24 / 600</span></div>
+    <div class="row"><div class="sample"><h4>Heading four</h4></div><span class="chip">h4 18 / 600</span></div>
+    <div class="row"><div class="sample"><p class="lead">Lead paragraph. Sample text shows how real copy sits at this size and rhythm.</p></div><span class="chip">body-lg 18 / 400</span></div>
+    <div class="row"><div class="sample"><p style="margin:0;max-width:60ch">Body. Sample text is a placeholder for the real content that will sit here in the built UI.</p></div><span class="chip">body 16 / 400</span></div>
+    <div class="row"><div class="sample"><span class="eyebrow" style="margin:0">Eyebrow label</span></div><span class="chip">eyebrow 11 / 600 / 0.14em</span></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Color</span>
+    <div class="swatches">
+      <div class="sw"><div class="chipcolor" style="background:var(--orange)"></div><div class="meta"><b>Orange</b><code>#EF4209 · accent only</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--indigo)"></div><div class="meta"><b>Indigo</b><code>#18206F · structure</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--ink)"></div><div class="meta"><b>Ink</b><code>#0B0D1A · text</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--dark)"></div><div class="meta"><b>Dark</b><code>#0E1124 · dark surface</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--dark-elev)"></div><div class="meta"><b>Dark elevated</b><code>#181C33 · cards on dark</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--light);border-bottom:1px solid var(--hairline)"></div><div class="meta"><b>Light</b><code>#F7EBE7 · background</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--white);border-bottom:1px solid var(--hairline)"></div><div class="meta"><b>White</b><code>#FFFFFC · surfaces</code></div></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Buttons</span>
+    <div class="btns">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+      <span class="chip">max one primary per surface</span>
+    </div>
+    <div class="darkstrip"><div class="btns"><button class="btn btn-ghost">Ghost on dark</button><span class="chip" style="color:rgba(255,255,255,0.62);background:rgba(255,255,255,0.08)">dark surfaces use hairline borders, not shadow</span></div></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Spacing</span>
+    <div class="scale">
+      <div class="bar"><span class="chip">2xs 4</span><span class="b" style="width:4px"></span></div>
+      <div class="bar"><span class="chip">xs 8</span><span class="b" style="width:8px"></span></div>
+      <div class="bar"><span class="chip">sm 16</span><span class="b" style="width:16px"></span></div>
+      <div class="bar"><span class="chip">md 32</span><span class="b" style="width:32px"></span></div>
+      <div class="bar"><span class="chip">lg 64</span><span class="b" style="width:64px"></span></div>
+      <div class="bar"><span class="chip">xl 96</span><span class="b" style="width:96px"></span></div>
+      <div class="bar"><span class="chip">2xl 128</span><span class="b" style="width:128px"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Radius and elevation</span>
+    <div class="boxes">
+      <div class="box" style="border-radius:var(--r-sm);box-shadow:var(--sh-ring)">sm 4 · ring</div>
+      <div class="box" style="border-radius:var(--r-md);box-shadow:var(--sh-card)">md 8 · card</div>
+      <div class="box" style="border-radius:var(--r-lg);box-shadow:var(--sh-hover)">lg 16 · hover</div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">States</span>
+    <div class="states">
+      <div class="state empty">Nothing here yet.</div>
+      <div class="state"><span class="lbl">loading</span><div class="sk"></div><div class="sk"></div><div class="sk short"></div></div>
+      <div class="state"><span class="lbl">error</span><div class="errnote"><b>Something went wrong.</b>Retry, or check your connection. Friction reads as ink, never alarm red.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Interaction</span>
+    <div class="demo-card"><b style="font-family:var(--font-heading)">Hover lift</b><p style="margin:var(--s-2xs) 0 0;color:var(--muted);font-size:14px">Hover, translateY -2px at 150ms. State changes ease at 250ms. That is the whole app baseline.</p></div>
+    <div class="note">Micro-interactions only in an application, CSS transitions on hover, focus, and state, and everything here stops under prefers-reduced-motion. Scroll reveals, entrance choreography, and animation libraries are a website concern, documented per site build, not part of the app design.</div>
+  </section>
+</div>
+</body>
+</html>

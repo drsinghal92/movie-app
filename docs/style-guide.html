@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Style guide — Movie Info App</title>
+<link rel="icon" href="data:," />
+<!--
+  KaizenOS style guide. One self-contained file, no build, no site. Open it in a browser.
+  Movie Info App — non-KaizenRise product. Brand defined fresh, guided by the founder's
+  taste reference: Netflix and IMDb for look and feel, not Bookmyshow. Dark-default,
+  poster-forward, editorial confidence. See the "Brand decisions" note below for rationale.
+  This is a checklist you can see. If a section reads thin, that is a design gap to fill.
+  Motion beyond micro-interactions is a website concern and lives per site build, not here.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bebas+Neue&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --accent:#E50914; --accent-2:#F5C518;
+    --ink:#F5F5F1; --dark:#0A0A0C; --dark-elev:#17171C; --dark-elev-2:#212127;
+    --light:#F5F5F1; --white:#FFFFFF;
+    --muted:rgba(245,245,241,0.66); --faint:rgba(245,245,241,0.42);
+    --hairline:rgba(245,245,241,0.12);
+    --font-heading:'Bebas Neue',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --font-mono:'JetBrains Mono',ui-monospace,monospace;
+    --s-2xs:4px; --s-xs:8px; --s-sm:16px; --s-md:32px; --s-lg:64px; --s-xl:96px; --s-2xl:128px;
+    --r-sm:4px; --r-md:8px; --r-lg:16px;
+    --sh-ring:0 0 0 1px rgba(255,255,255,0.06),0 1px 3px rgba(0,0,0,0.40);
+    --sh-card:0 4px 12px rgba(0,0,0,0.50);
+    --sh-hover:0 10px 24px rgba(0,0,0,0.60);
+    --d-fast:150ms; --d-base:250ms; --e-standard:cubic-bezier(0.2,0.7,0,1);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:var(--font-body); color:var(--ink); background:var(--dark); line-height:1.55; }
+  .accent { height:5px; background:var(--accent); }
+  .wrap { max-width:960px; margin:0 auto; padding:var(--s-xl) var(--s-lg) var(--s-2xl); }
+  header.top { display:flex; align-items:center; gap:var(--s-xs); }
+  header.top .mark { width:28px; height:28px; border-radius:4px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-size:16px; color:var(--white); letter-spacing:0; }
+  header.top .name { font-family:var(--font-heading); font-weight:400; font-size:24px; letter-spacing:0.02em; }
+  header.top .tag { color:var(--faint); font-size:12px; }
+  .purpose { color:var(--muted); font-size:14px; margin:var(--s-xs) 0 0; max-width:64ch; }
+  .note.brand { border-left:3px solid var(--accent-2); background:rgba(245,197,24,0.08); padding:var(--s-sm) var(--s-md); border-radius:0 var(--r-sm) var(--r-sm) 0; margin-top:var(--s-md); font-size:14px; color:var(--muted); }
+  .note.brand b { color:var(--ink); font-family:var(--font-body); font-weight:600; display:block; margin-bottom:4px; }
+  .note.brand ul { margin:var(--s-xs) 0 0; padding-left:18px; }
+  .note.brand li { margin-bottom:6px; }
+  .eyebrow { font-family:var(--font-body); font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-2); display:block; margin:var(--s-2xl) 0 var(--s-xs); }
+  h1,h2,h3,h4 { font-family:var(--font-heading); font-weight:400; letter-spacing:0.01em; margin:0; }
+  .row { display:flex; align-items:baseline; gap:var(--s-sm); padding:var(--s-sm) 0; border-bottom:1px solid var(--hairline); }
+  .row .sample { flex:1; min-width:0; }
+  .chip { font-family:var(--font-mono); font-size:11px; color:var(--muted); background:rgba(255,255,255,0.06); padding:3px 8px; border-radius:var(--r-sm); white-space:nowrap; align-self:center; }
+  .d { font-size:88px; line-height:0.95; letter-spacing:0.01em; font-weight:400; font-family:var(--font-heading); }
+  .lead { font-size:18px; color:var(--muted); max-width:60ch; font-family:var(--font-body); }
+  .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:var(--s-sm); }
+  .sw { border:1px solid var(--hairline); border-radius:var(--r-md); overflow:hidden; background:var(--dark-elev); }
+  .sw .chipcolor { height:64px; }
+  .sw .meta { padding:var(--s-xs) var(--s-sm); font-size:13px; }
+  .sw .meta b { font-family:var(--font-body); font-weight:600; display:block; }
+  .sw .meta code { font-family:var(--font-mono); color:var(--muted); font-size:12px; }
+  .btns { display:flex; flex-wrap:wrap; gap:var(--s-sm); align-items:center; }
+  .btn { font-family:var(--font-body); font-size:14px; font-weight:600; height:48px; padding:0 24px; border-radius:var(--r-sm); border:none; cursor:pointer; display:inline-flex; align-items:center; gap:var(--s-xs); transition:transform var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard); }
+  .btn-primary { background:var(--accent); color:var(--white); }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:var(--sh-hover); }
+  .btn-secondary { background:transparent; color:var(--ink); border:1.5px solid rgba(255,255,255,0.28); }
+  .btn-ghost { background:transparent; color:var(--white); border:1.5px solid rgba(255,255,255,0.30); }
+  .btn:disabled { opacity:0.35; cursor:not-allowed; }
+  .darkstrip { background:var(--dark-elev-2); border-radius:var(--r-md); padding:var(--s-md); margin-top:var(--s-sm); border:1px solid var(--hairline); }
+  .scale { display:flex; flex-direction:column; gap:var(--s-xs); }
+  .scale .bar { display:flex; align-items:center; gap:var(--s-sm); }
+  .scale .bar span.b { height:16px; background:var(--accent-2); border-radius:2px; }
+  .boxes { display:flex; gap:var(--s-md); flex-wrap:wrap; }
+  .box { width:120px; height:80px; background:var(--dark-elev); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:12px; color:var(--muted); border:1px solid var(--hairline); }
+  .states { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s-sm); }
+  .state { background:var(--dark-elev); border-radius:var(--r-md); box-shadow:var(--sh-ring); padding:var(--s-md); min-height:120px; }
+  .state .lbl { font-family:var(--font-mono); font-size:11px; color:var(--faint); display:block; margin-bottom:var(--s-xs); }
+  .state.empty { display:flex; align-items:center; justify-content:center; color:var(--faint); font-size:14px; text-align:center; }
+  .sk { height:12px; border-radius:3px; background:rgba(255,255,255,0.08); margin-bottom:var(--s-xs); animation:pulse 1.4s var(--e-standard) infinite; }
+  .sk.short { width:60%; }
+  @keyframes pulse { 50% { opacity:0.35; } }
+  .errnote { border-left:3px solid var(--ink); padding-left:var(--s-sm); color:var(--muted); font-size:14px; }
+  .errnote b { color:var(--ink); font-family:var(--font-body); font-weight:600; display:block; }
+  .poster-row { display:flex; gap:var(--s-sm); flex-wrap:wrap; }
+  .poster { width:140px; }
+  .poster .art { width:140px; height:207px; border-radius:var(--r-sm); background:linear-gradient(160deg,#2a2a33,#111114); box-shadow:var(--sh-card); position:relative; overflow:hidden; transition:transform var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard); display:flex; align-items:flex-end; padding:var(--s-xs); }
+  .poster .art:hover { transform:translateY(-4px) scale(1.02); box-shadow:var(--sh-hover); }
+  .poster .rank { font-family:var(--font-heading); font-size:40px; color:rgba(255,255,255,0.85); text-shadow:0 2px 8px rgba(0,0,0,0.6); }
+  .poster .title { font-size:13px; font-weight:600; margin-top:var(--s-2xs); }
+  .poster .meta { font-size:12px; color:var(--faint); }
+  .rating-pill { display:inline-flex; align-items:center; gap:4px; background:rgba(245,197,24,0.12); color:var(--accent-2); border:1px solid rgba(245,197,24,0.30); border-radius:20px; padding:3px 10px; font-size:12px; font-weight:600; }
+  .demo-card { background:var(--dark-elev); border-radius:var(--r-md); box-shadow:var(--sh-ring); padding:var(--s-md); transition:transform var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard); max-width:360px; }
+  .demo-card:hover { transform:translateY(-2px); box-shadow:var(--sh-hover); }
+  .note { border-left:3px solid var(--accent); background:rgba(229,9,20,0.10); padding:var(--s-sm) var(--s-md); border-radius:0 var(--r-sm) var(--r-sm) 0; margin-top:var(--s-sm); font-size:14px; color:var(--muted); }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition:none !important; animation:none !important; } }
+  @media (max-width:768px){ .wrap{ padding:var(--s-lg) var(--s-md); } .d{ font-size:52px; } .states{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="accent"></div>
+<div class="wrap">
+  <header class="top">
+    <span class="mark">M</span>
+    <span class="name">MOVIE INFO APP</span><span class="tag">style guide</span>
+  </header>
+  <p class="purpose">The design at a glance. Every section a product should define is here. If one reads thin, that is a gap to fill before building.</p>
+
+  <div class="note brand">
+    <b>Brand decisions (guided, made for efficiency)</b>
+    <ul>
+      <li><b style="display:inline">Light vs dark default — dark.</b> Netflix and IMDb are both dark-surface products because dark lets poster art and photography carry the color; a light UI would compete with poster imagery instead of framing it. Dark-elevated cards (#17171C, #212127) sit on a near-black base (#0A0A0C).</li>
+      <li><b style="display:inline">Accent — Netflix red (#E50914) as primary, IMDb yellow (#F5C518) as a secondary rating/eyebrow accent.</b> One strong accent (red) for primary actions keeps it confident and restrained like Netflix; borrowing IMDb's yellow only for ratings and labels gives the "rating and credibility" cue IMDb owns, without diluting the primary accent or drifting toward Bookmyshow's multi-color, promo-heavy look. Two accents, each with one job, is still one decision.</li>
+      <li><b style="display:inline">Type pairing — Bebas Neue for display/headings, Inter for body/UI.</b> A tall condensed display face reads as cinematic marquee/poster typography (the Netflix and IMDb title-card register) without licensing their exact faces; Inter stays neutral and highly legible for synopses, cast lists, and forms, so editorial confidence up top never fights readability below.</li>
+    </ul>
+    Bookmyshow's ticket-booking energy (bright multi-color chips, dense promo tiles, light backgrounds) is deliberately avoided throughout, this is a poster-forward, editorial browsing experience, not a transactional booking flow.
+  </div>
+
+  <section>
+    <span class="eyebrow">Typography</span>
+    <div class="row"><div class="sample"><div class="d">TOP 10 · 1994</div></div><span class="chip">display 88 / Bebas Neue</span></div>
+    <div class="row"><div class="sample"><h1>Movie title heading</h1></div><span class="chip">h1 52 / Bebas Neue</span></div>
+    <div class="row"><div class="sample"><h2>Year section heading</h2></div><span class="chip">h2 36 / Bebas Neue</span></div>
+    <div class="row"><div class="sample"><h3>Cast, streaming links</h3></div><span class="chip">h3 24 / Bebas Neue</span></div>
+    <div class="row"><div class="sample"><h4>Card label</h4></div><span class="chip">h4 18 / Bebas Neue</span></div>
+    <div class="row"><div class="sample"><p class="lead">Lead paragraph. Sample text shows how a synopsis or personal note sits at this size and rhythm.</p></div><span class="chip">body-lg 18 / Inter 400</span></div>
+    <div class="row"><div class="sample"><p style="margin:0;max-width:60ch">Body. Sample text is a placeholder for the real cast bios, personal notes, and metadata that sit here in the built UI.</p></div><span class="chip">body 16 / Inter 400</span></div>
+    <div class="row"><div class="sample"><span class="eyebrow" style="margin:0">Eyebrow label</span></div><span class="chip">eyebrow 11 / 600 / 0.14em</span></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Color</span>
+    <div class="swatches">
+      <div class="sw"><div class="chipcolor" style="background:var(--accent)"></div><div class="meta"><b>Accent red</b><code>#E50914 · primary action</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--accent-2)"></div><div class="meta"><b>Accent yellow</b><code>#F5C518 · rating, eyebrow only</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--ink)"></div><div class="meta"><b>Ink</b><code>#F5F5F1 · text on dark</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--dark)"></div><div class="meta"><b>Dark</b><code>#0A0A0C · app background</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--dark-elev)"></div><div class="meta"><b>Dark elevated</b><code>#17171C · cards</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--dark-elev-2)"></div><div class="meta"><b>Dark elevated 2</b><code>#212127 · nested surfaces</code></div></div>
+      <div class="sw"><div class="chipcolor" style="background:var(--white)"></div><div class="meta"><b>White</b><code>#FFFFFF · rare, high-contrast text</code></div></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Buttons</span>
+    <div class="btns">
+      <button class="btn btn-primary">Watch now</button>
+      <button class="btn btn-secondary">Add to watchlist</button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+      <span class="chip">max one primary per surface</span>
+    </div>
+    <div class="darkstrip"><div class="btns"><button class="btn btn-ghost">Ghost on card</button><span class="rating-pill">★ 8.6 IMDb-style rating</span></div></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Poster grid (product motif)</span>
+    <div class="poster-row">
+      <div class="poster"><div class="art"><span class="rank">1</span></div><div class="title">The Shawshank Redemption</div><div class="meta">1994 · Drama</div></div>
+      <div class="poster"><div class="art"><span class="rank">2</span></div><div class="title">Pulp Fiction</div><div class="meta">1994 · Crime</div></div>
+      <div class="poster"><div class="art"><span class="rank">3</span></div><div class="title">Forrest Gump</div><div class="meta">1994 · Drama</div></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Spacing</span>
+    <div class="scale">
+      <div class="bar"><span class="chip">2xs 4</span><span class="b" style="width:4px"></span></div>
+      <div class="bar"><span class="chip">xs 8</span><span class="b" style="width:8px"></span></div>
+      <div class="bar"><span class="chip">sm 16</span><span class="b" style="width:16px"></span></div>
+      <div class="bar"><span class="chip">md 32</span><span class="b" style="width:32px"></span></div>
+      <div class="bar"><span class="chip">lg 64</span><span class="b" style="width:64px"></span></div>
+      <div class="bar"><span class="chip">xl 96</span><span class="b" style="width:96px"></span></div>
+      <div class="bar"><span class="chip">2xl 128</span><span class="b" style="width:128px"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Radius and elevation</span>
+    <div class="boxes">
+      <div class="box" style="border-radius:var(--r-sm);box-shadow:var(--sh-ring)">sm 4 · ring</div>
+      <div class="box" style="border-radius:var(--r-md);box-shadow:var(--sh-card)">md 8 · card</div>
+      <div class="box" style="border-radius:var(--r-lg);box-shadow:var(--sh-hover)">lg 16 · hover</div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">States</span>
+    <div class="states">
+      <div class="state empty">No movies added to this year yet.</div>
+      <div class="state"><span class="lbl">loading</span><div class="sk"></div><div class="sk"></div><div class="sk short"></div></div>
+      <div class="state"><span class="lbl">error</span><div class="errnote"><b>Something went wrong.</b>Retry, or check your connection. Friction reads as ink, never alarm red.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Interaction</span>
+    <div class="demo-card"><b style="font-family:var(--font-body)">Hover lift</b><p style="margin:var(--s-2xs) 0 0;color:var(--muted);font-size:14px">Hover, translateY -2px at 150ms. Poster cards lift and scale slightly more (-4px, 1.02x) to feel tactile like a browsable shelf. State changes ease at 250ms. That is the whole app baseline.</p></div>
+    <div class="note">Micro-interactions only in an application, CSS transitions on hover, focus, and state, and everything here stops under prefers-reduced-motion. Scroll reveals, entrance choreography, and animation libraries are a website concern, documented per site build, not part of the app design.</div>
+  </section>
+</div>
+</body>
+</html>

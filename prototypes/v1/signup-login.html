@@ -1,0 +1,81 @@
+<!-- KaizenOS prototype, disposable, never imported into code/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign up / Log in — Movie Info App</title>
+<link rel="icon" href="data:," />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --accent:#E50914; --accent-2:#F5C518;
+    --ink:#F5F5F1; --dark:#0A0A0C; --dark-elev:#17171C;
+    --muted:rgba(245,245,241,0.66); --faint:rgba(245,245,241,0.42);
+    --hairline:rgba(245,245,241,0.12);
+    --font-heading:'Bebas Neue',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --s-2xs:4px; --s-xs:8px; --s-sm:16px; --s-md:32px; --s-lg:64px; --s-xl:96px;
+    --r-sm:4px; --r-md:8px;
+    --sh-card:0 4px 12px rgba(0,0,0,0.50);
+    --sh-hover:0 10px 24px rgba(0,0,0,0.60);
+    --d-fast:150ms; --e-standard:cubic-bezier(0.2,0.7,0,1);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:var(--font-body); color:var(--ink); background:var(--dark); line-height:1.55; }
+  a { color:inherit; text-decoration:none; }
+  .accent-bar { height:4px; background:var(--accent); }
+  header.nav { display:flex; align-items:center; justify-content:space-between; padding:var(--s-sm) var(--s-lg); border-bottom:1px solid var(--hairline); }
+  header.nav .brand { display:flex; align-items:center; gap:var(--s-xs); }
+  header.nav .mark { width:26px; height:26px; border-radius:4px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-size:15px; }
+  header.nav .name { font-family:var(--font-heading); font-size:20px; letter-spacing:0.02em; }
+  header.nav nav { display:flex; gap:var(--s-md); align-items:center; font-size:14px; font-weight:500; }
+  header.nav nav a { color:var(--muted); transition:color var(--d-fast) var(--e-standard); }
+  header.nav nav a:hover { color:var(--ink); }
+  .center-wrap { max-width:420px; margin:0 auto; padding:var(--s-xl) var(--s-lg); }
+  .tabs { display:flex; border:1px solid var(--hairline); border-radius:var(--r-sm); overflow:hidden; margin-bottom:var(--s-lg); }
+  .tabs button { flex:1; background:var(--dark-elev); color:var(--muted); border:none; padding:12px; font-family:var(--font-body); font-weight:600; font-size:14px; cursor:pointer; }
+  .tabs button.active { background:var(--accent); color:#fff; }
+  h1 { font-family:var(--font-heading); font-weight:400; font-size:36px; margin:0 0 var(--s-xs); }
+  .sub { color:var(--muted); font-size:14px; margin:0 0 var(--s-md); }
+  label { display:block; font-size:13px; font-weight:600; margin-bottom:6px; color:var(--muted); }
+  input[type=email], input[type=password] { width:100%; height:46px; border-radius:var(--r-sm); border:1px solid var(--hairline); background:var(--dark-elev); color:var(--ink); padding:0 var(--s-sm); font-size:15px; font-family:var(--font-body); margin-bottom:var(--s-sm); }
+  input:focus { outline:2px solid var(--accent); outline-offset:1px; }
+  .btn { width:100%; font-family:var(--font-body); font-size:15px; font-weight:600; height:48px; border-radius:var(--r-sm); border:none; cursor:pointer; background:var(--accent); color:#fff; margin-top:var(--s-xs); transition:transform var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard); }
+  .btn:hover { transform:translateY(-2px); box-shadow:var(--sh-hover); }
+  .fine { font-size:12px; color:var(--faint); margin-top:var(--s-sm); text-align:center; }
+  footer.site { border-top:1px solid var(--hairline); padding:var(--s-md) var(--s-lg); display:flex; justify-content:space-between; color:var(--faint); font-size:12px; position:fixed; bottom:0; left:0; right:0; }
+  footer.site a { color:var(--faint); }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="mark">M</span><span class="name">MOVIE INFO APP</span>
+  </a>
+  <nav><a href="index.html">Back to browsing</a></nav>
+</header>
+<div class="center-wrap">
+  <div class="tabs">
+    <button class="active">Sign up</button>
+    <button>Log in</button>
+  </div>
+  <h1>Create your account</h1>
+  <p class="sub">Save movies to a watchlist and find them again later.</p>
+  <label for="email">Email</label>
+  <input type="email" id="email" placeholder="you@example.com" />
+  <label for="pw">Password</label>
+  <input type="password" id="pw" placeholder="At least 8 characters" />
+  <button class="btn" onclick="location.href='watchlist-empty.html'">Create account</button>
+  <p class="fine">Already have an account? Switch to Log in above.</p>
+</div>
+<footer class="site">
+  <span>Movie Info App</span>
+  <a href="founder-login.html">Founder area</a>
+</footer>
+</body>
+</html>
+</content>

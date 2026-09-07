@@ -1,0 +1,112 @@
+<!-- KaizenOS prototype, disposable, never imported into code/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Shawshank Redemption — Movie Info App</title>
+<link rel="icon" href="data:," />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --accent:#E50914; --accent-2:#F5C518;
+    --ink:#F5F5F1; --dark:#0A0A0C; --dark-elev:#17171C;
+    --muted:rgba(245,245,241,0.66); --faint:rgba(245,245,241,0.42);
+    --hairline:rgba(245,245,241,0.12);
+    --font-heading:'Bebas Neue',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --s-2xs:4px; --s-xs:8px; --s-sm:16px; --s-md:32px; --s-lg:64px; --s-xl:96px;
+    --r-sm:4px; --r-md:8px; --r-lg:16px;
+    --sh-card:0 4px 12px rgba(0,0,0,0.50);
+    --sh-hover:0 10px 24px rgba(0,0,0,0.60);
+    --d-fast:150ms; --e-standard:cubic-bezier(0.2,0.7,0,1);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:var(--font-body); color:var(--ink); background:var(--dark); line-height:1.55; }
+  a { color:inherit; text-decoration:none; }
+  .accent-bar { height:4px; background:var(--accent); }
+  header.nav { display:flex; align-items:center; justify-content:space-between; padding:var(--s-sm) var(--s-lg); border-bottom:1px solid var(--hairline); }
+  header.nav .brand { display:flex; align-items:center; gap:var(--s-xs); }
+  header.nav .mark { width:26px; height:26px; border-radius:4px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-size:15px; }
+  header.nav .name { font-family:var(--font-heading); font-size:20px; letter-spacing:0.02em; }
+  header.nav nav { display:flex; gap:var(--s-md); align-items:center; font-size:14px; font-weight:500; }
+  header.nav nav a { color:var(--muted); transition:color var(--d-fast) var(--e-standard); }
+  header.nav nav a:hover { color:var(--ink); }
+  header.nav nav a.cta { color:var(--ink); border:1.5px solid rgba(255,255,255,0.28); border-radius:var(--r-sm); padding:8px 16px; }
+  .wrap { max-width:1000px; margin:0 auto; padding:var(--s-lg) var(--s-lg) var(--s-xl); }
+  .crumbs { font-size:13px; color:var(--faint); margin-bottom:var(--s-md); }
+  .crumbs a:hover { color:var(--muted); }
+  .detail { display:grid; grid-template-columns:260px 1fr; gap:var(--s-lg); }
+  .poster-art { width:260px; height:384px; border-radius:var(--r-md); background:linear-gradient(160deg,#2a2a33,#111114); box-shadow:var(--sh-card); }
+  h1 { font-family:var(--font-heading); font-weight:400; font-size:52px; letter-spacing:0.01em; margin:0 0 var(--s-xs); }
+  .meta-row { display:flex; gap:var(--s-sm); align-items:center; color:var(--faint); font-size:14px; margin-bottom:var(--s-sm); }
+  .rating-pill { display:inline-flex; align-items:center; gap:4px; background:rgba(245,197,24,0.12); color:var(--accent-2); border:1px solid rgba(245,197,24,0.30); border-radius:20px; padding:3px 10px; font-size:12px; font-weight:600; }
+  .synopsis { color:var(--muted); font-size:16px; max-width:60ch; margin:0 0 var(--s-md); }
+  h3 { font-family:var(--font-heading); font-weight:400; font-size:22px; letter-spacing:0.01em; margin:var(--s-md) 0 var(--s-xs); }
+  .cast { color:var(--muted); font-size:14px; }
+  .note-card { background:rgba(229,9,20,0.08); border-left:3px solid var(--accent); border-radius:0 var(--r-sm) var(--r-sm) 0; padding:var(--s-sm) var(--s-md); font-size:14px; color:var(--muted); margin-top:var(--s-xs); }
+  .note-card b { display:block; color:var(--ink); font-weight:600; margin-bottom:4px; }
+  .links { display:flex; gap:var(--s-sm); flex-wrap:wrap; margin-top:var(--s-xs); }
+  .btn { font-family:var(--font-body); font-size:14px; font-weight:600; height:44px; padding:0 20px; border-radius:var(--r-sm); border:none; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:transform var(--d-fast) var(--e-standard), box-shadow var(--d-fast) var(--e-standard); }
+  .btn-primary { background:var(--accent); color:#fff; }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:var(--sh-hover); }
+  .btn-secondary { background:transparent; color:var(--ink); border:1.5px solid rgba(255,255,255,0.28); }
+  .actions { margin-top:var(--s-md); }
+  footer.site { border-top:1px solid var(--hairline); padding:var(--s-md) var(--s-lg); display:flex; justify-content:space-between; color:var(--faint); font-size:12px; }
+  footer.site a { color:var(--faint); }
+  footer.site a:hover { color:var(--muted); }
+  @media (max-width:700px){ .detail{ grid-template-columns:1fr; } .poster-art{ width:180px; height:266px; } }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="mark">M</span><span class="name">MOVIE INFO APP</span>
+  </a>
+  <nav>
+    <a href="index.html">Browse</a>
+    <a href="search.html">Search</a>
+    <a href="watchlist.html">Watchlist</a>
+    <a href="signup-login.html" class="cta">Sign up / Log in</a>
+  </nav>
+</header>
+<div class="wrap">
+  <div class="crumbs"><a href="index.html">Browse</a> / <a href="year-1994.html">1994</a> / The Shawshank Redemption</div>
+  <div class="detail">
+    <div class="poster-art"></div>
+    <div>
+      <h1>The Shawshank Redemption</h1>
+      <div class="meta-row">
+        <span>1994 · Drama · 142 min</span>
+        <span class="rating-pill">★ 9.3</span>
+      </div>
+      <p class="synopsis">Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency, in a story about hope that refuses to die even behind stone walls.</p>
+
+      <h3>Cast</h3>
+      <p class="cast">Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler</p>
+
+      <h3>Why it made the list</h3>
+      <div class="note-card"><b>Founder's note</b>This is the film I show anyone who says they "don't like old movies." Every scene earns its place, and the ending still lands the same way it did the first time.</div>
+
+      <h3>Where to watch</h3>
+      <div class="links">
+        <button class="btn btn-primary">▶ Watch on Netflix</button>
+        <button class="btn btn-secondary">Watch on Prime Video</button>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-secondary">+ Add to watchlist</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="site">
+  <span>Movie Info App — a personally curated top-10, year by year.</span>
+  <a href="founder-login.html">Founder area</a>
+</footer>
+</body>
+</html>
+</content>

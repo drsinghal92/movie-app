@@ -1,0 +1,84 @@
+<!-- KaizenOS prototype, disposable, never imported into code/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Watchlist — Movie Info App</title>
+<link rel="icon" href="data:," />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --accent:#E50914; --accent-2:#F5C518;
+    --ink:#F5F5F1; --dark:#0A0A0C; --dark-elev:#17171C;
+    --muted:rgba(245,245,241,0.66); --faint:rgba(245,245,241,0.42);
+    --hairline:rgba(245,245,241,0.12);
+    --font-heading:'Bebas Neue',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --s-2xs:4px; --s-xs:8px; --s-sm:16px; --s-md:32px; --s-lg:64px; --s-xl:96px;
+    --r-sm:4px; --r-md:8px;
+    --sh-card:0 4px 12px rgba(0,0,0,0.50);
+    --sh-hover:0 10px 24px rgba(0,0,0,0.60);
+    --d-fast:150ms; --e-standard:cubic-bezier(0.2,0.7,0,1);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:var(--font-body); color:var(--ink); background:var(--dark); line-height:1.55; }
+  a { color:inherit; text-decoration:none; }
+  .accent-bar { height:4px; background:var(--accent); }
+  header.nav { display:flex; align-items:center; justify-content:space-between; padding:var(--s-sm) var(--s-lg); border-bottom:1px solid var(--hairline); }
+  header.nav .brand { display:flex; align-items:center; gap:var(--s-xs); }
+  header.nav .mark { width:26px; height:26px; border-radius:4px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-size:15px; }
+  header.nav .name { font-family:var(--font-heading); font-size:20px; letter-spacing:0.02em; }
+  header.nav nav { display:flex; gap:var(--s-md); align-items:center; font-size:14px; font-weight:500; }
+  header.nav nav a { color:var(--muted); transition:color var(--d-fast) var(--e-standard); }
+  header.nav nav a:hover, header.nav nav a.active { color:var(--ink); }
+  header.nav nav a.cta { color:var(--ink); border:1.5px solid rgba(255,255,255,0.28); border-radius:var(--r-sm); padding:8px 16px; }
+  .wrap { max-width:1100px; margin:0 auto; padding:var(--s-lg) var(--s-lg) var(--s-xl); }
+  .eyebrow { font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-2); display:block; margin-bottom:var(--s-xs); }
+  h1 { font-family:var(--font-heading); font-weight:400; font-size:44px; letter-spacing:0.01em; margin:0 0 var(--s-lg); }
+  .list { display:flex; flex-direction:column; gap:var(--s-sm); }
+  .row { display:flex; gap:var(--s-md); align-items:center; background:var(--dark-elev); border:1px solid var(--hairline); border-radius:var(--r-md); padding:var(--s-sm) var(--s-md); box-shadow:var(--sh-card); }
+  .poster-thumb { width:56px; height:82px; border-radius:var(--r-sm); background:linear-gradient(160deg,#2a2a33,#111114); flex-shrink:0; }
+  .info { flex:1; min-width:0; }
+  .info a.title { font-size:16px; font-weight:600; margin-bottom:2px; display:block; }
+  .info a.title:hover { color:var(--accent-2); }
+  .info .meta { font-size:13px; color:var(--faint); }
+  .remove-btn { font-family:var(--font-body); font-size:13px; font-weight:600; height:38px; padding:0 16px; border-radius:var(--r-sm); border:1.5px solid rgba(255,255,255,0.28); background:transparent; color:var(--ink); cursor:pointer; flex-shrink:0; }
+  footer.site { border-top:1px solid var(--hairline); padding:var(--s-md) var(--s-lg); display:flex; justify-content:space-between; color:var(--faint); font-size:12px; }
+  footer.site a { color:var(--faint); }
+  footer.site a:hover { color:var(--muted); }
+  .empty-state { text-align:center; padding:var(--s-xl) var(--s-lg); color:var(--faint); background:var(--dark-elev); border:1px dashed var(--hairline); border-radius:var(--r-md); }
+  .empty-state p { max-width:44ch; margin:8px auto var(--s-md); }
+  .empty-state .btn { display:inline-flex; font-family:var(--font-body); font-size:14px; font-weight:600; height:44px; padding:0 20px; align-items:center; border-radius:var(--r-sm); background:var(--accent); color:#fff; border:none; }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<header class="nav">
+  <a class="brand" href="index.html">
+    <span class="mark">M</span><span class="name">MOVIE INFO APP</span>
+  </a>
+  <nav>
+    <a href="index.html">Browse</a>
+    <a href="search.html">Search</a>
+    <a href="watchlist.html" class="active">Watchlist</a>
+    <a href="signup-login.html" class="cta" style="border:none;padding:0">Jamie ▾</a>
+  </nav>
+</header>
+<div class="wrap">
+  <span class="eyebrow">Signed in as jamie@example.com</span>
+  <h1>My watchlist</h1>
+  <div class="empty-state">
+    <p>Your watchlist is empty. Save a movie from any detail page to find it here later.</p>
+    <a class="btn" href="index.html">Browse movies</a>
+  </div>
+</div>
+<footer class="site">
+  <span>Movie Info App — a personally curated top-10, year by year.</span>
+  <a href="founder-login.html">Founder area</a>
+</footer>
+</body>
+</html>
+</content>

@@ -1,0 +1,54 @@
+# KaizenOS CI. Independent re-verification of what the agents claim.
+# Installed at .github/workflows/ci.yml. Runs the same gates as scripts/test.sh,
+# on a machine with no stake in the story.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Install (every code/* slot, root fallback)
+        run: |
+          installed=0
+          if [ -d code ]; then
+            for d in code/*/; do
+              if [ -f "${d}package.json" ]; then
+                echo "== npm ci in ${d}"
+                (cd "$d" && npm ci)
+                installed=1
+              fi
+            done
+          fi
+          if [ "$installed" -eq 0 ] && [ -f package.json ]; then
+            npm ci
+          fi
+
+      - name: Test gate
+        run: bash scripts/test.sh
+
+      - name: Typecheck (every slot that defines it)
+        run: |
+          check_dir() {
+            if [ -f "$1/package.json" ] && (cd "$1" && npm run 2>/dev/null | grep -qE '^[[:space:]]+typecheck'); then
+              echo "== typecheck in $1"
+              (cd "$1" && npm run typecheck)
+            fi
+          }
+          if [ -d code ]; then
+            for d in code/*/; do check_dir "${d%/}"; done
+          else
+            check_dir .
+          fi
