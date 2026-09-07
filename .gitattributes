@@ -1,0 +1,5 @@
+# KaizenOS docs, backlog, and harness state are parsed by scripts/*.mjs with
+# regexes anchored on `$`, which does not consume a trailing \r. A Windows
+# checkout with core.autocrlf=true silently breaks every field lookup unless
+# these files are pinned to LF regardless of the client's autocrlf setting.
+* text=auto eol=lf
