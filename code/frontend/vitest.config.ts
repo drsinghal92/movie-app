@@ -19,6 +19,13 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["tests/unit/**/*.test.ts"],
+    // Data-layer tests share one real Postgres instance and reset it with
+    // deleteMany/create at fixture time, so concurrent test files racing on
+    // the same rows (e.g. two files both seeding year 1994) collide on
+    // unique constraints. Serialize files so each suite's reset+seed cycle
+    // is atomic against the others (S-002 surfaced this once a second file
+    // shared fixture data with years.test.ts).
+    fileParallelism: false,
   },
   resolve: {
     alias: {

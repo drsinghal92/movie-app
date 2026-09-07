@@ -1,0 +1,19 @@
+story: S-002
+title: View a movie's detail page
+verdict: PASS
+gated_at: 2026-09-07 16:00
+tests: green
+failing_cases: []
+acceptance_met: true
+ui_verified: PASS
+security: skipped
+review: skipped
+findings:
+  - source: qa
+    severity: low
+    what: "The vitest/playwright parallelism config change (fileParallelism/fullyParallel/workers) in this story's Notes is a suite-wide change, justified and verified green, but worth watching on future stories touching those configs."
+    outcome: recorded
+escaped: null
+blocked: null
+pr: null
+notes: All four ACs enforced in getMovieDetail (years.ts) and proven by unit + a real poster-card-click e2e test, including the no-streaming-link fallback and the published-guard 404 case.

@@ -84,3 +84,57 @@ export async function getYearWithMovies(
     movies: found.movies,
   };
 }
+
+export type MovieDetail = {
+  id: string;
+  poster: string;
+  title: string;
+  synopsis: string;
+  rating: number;
+  cast: string[];
+  personalNote: string;
+  streamingLinks: { id: string; provider: string; url: string }[];
+  year: number;
+};
+
+/**
+ * One movie's full detail (DESIGN.md 3.3, S-002). Returns null for a movie
+ * that does not exist or whose parent year is not published (AC1-AC4),
+ * copying the `Year.published` predicate `getYearWithMovies` carries above
+ * (docs/BUILD-STANDARDS.md #5), so an unpublished year's movie is
+ * unreachable even by a guessed `/movies/[id]` URL.
+ */
+export async function getMovieDetail(id: string): Promise<MovieDetail | null> {
+  const found = await prisma.movie.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      poster: true,
+      title: true,
+      synopsis: true,
+      rating: true,
+      cast: true,
+      personalNote: true,
+      year: { select: { year: true, published: true } },
+      streamingLinks: {
+        select: { id: true, provider: true, url: true },
+      },
+    },
+  });
+
+  if (!found || !found.year.published) {
+    return null;
+  }
+
+  return {
+    id: found.id,
+    poster: found.poster,
+    title: found.title,
+    synopsis: found.synopsis,
+    rating: found.rating,
+    cast: found.cast,
+    personalNote: found.personalNote,
+    streamingLinks: found.streamingLinks,
+    year: found.year.year,
+  };
+}

@@ -15,7 +15,7 @@ epics:
         title: View a movie's detail page
         depends_on: [S-001]
         autonomy: unattended
-        status: todo
+        status: in-progress
         gate: null
         pr: null
       - id: S-003
