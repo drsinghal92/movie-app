@@ -1,3 +1,7 @@
+/* Design tokens mirrored from docs/style-guide.html :root block (single
+   source of truth for values, per docs/DESIGN.md section 2). Not forked
+   logic, just the same custom properties made available to the app so
+   tailwind.config.ts's color/font mappings resolve. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,6 +31,7 @@
   --r-sm: 4px;
   --r-md: 8px;
   --r-lg: 16px;
+  --sh-ring: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 1px 3px rgba(0, 0, 0, 0.4);
   --sh-card: 0 4px 12px rgba(0, 0, 0, 0.5);
   --sh-hover: 0 10px 24px rgba(0, 0, 0, 0.6);
   --d-fast: 150ms;

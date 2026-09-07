@@ -1,0 +1,19 @@
+story: S-004
+title: Founder login
+verdict: PASS
+gated_at: 2026-09-07 14:00
+tests: green
+failing_cases: []
+acceptance_met: true
+ui_verified: PASS
+security: skipped
+review: skipped
+findings:
+  - source: qa
+    severity: low
+    what: "Login page's client-side error string (founder/login/page.tsx) and auth.ts's thrown error text are two independently-maintained hardcoded generic strings; a future edit to one without the other could silently reintroduce a leak, since the test only asserts the page string, not that auth.ts's error is opaque at the NextAuth response boundary."
+    outcome: recorded
+escaped: null
+blocked: null
+pr: null
+notes: All three ACs enforced (bcrypt compare + generic error in auth.ts, middleware + server-side redirect for the gated route) and proven by a real-browser Playwright form submit, including an unauthenticated redirect-before-render check for AC3.
