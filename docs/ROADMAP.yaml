@@ -33,7 +33,7 @@ epics:
         title: Founder login
         depends_on: []
         autonomy: unattended
-        status: todo
+        status: in-progress
         gate: null
         pr: null
       - id: S-005

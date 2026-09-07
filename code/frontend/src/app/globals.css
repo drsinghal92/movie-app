@@ -1,0 +1,57 @@
+/* Design tokens mirrored from docs/style-guide.html :root block (single
+   source of truth for values, per docs/DESIGN.md section 2). Not forked
+   logic, just the same custom properties made available to the app so
+   tailwind.config.ts's color/font mappings resolve. */
+:root {
+  --accent: #e50914;
+  --accent-2: #f5c518;
+  --ink: #f5f5f1;
+  --dark: #0a0a0c;
+  --dark-elev: #17171c;
+  --dark-elev-2: #212127;
+  --white: #ffffff;
+  --muted: rgba(245, 245, 241, 0.66);
+  --faint: rgba(245, 245, 241, 0.42);
+  --hairline: rgba(245, 245, 241, 0.12);
+  --font-heading: "Bebas Neue", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --s-2xs: 4px;
+  --s-xs: 8px;
+  --s-sm: 16px;
+  --s-md: 32px;
+  --s-lg: 64px;
+  --s-xl: 96px;
+  --s-2xl: 128px;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+  --sh-ring: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 1px 3px rgba(0, 0, 0, 0.4);
+  --sh-card: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --sh-hover: 0 10px 24px rgba(0, 0, 0, 0.6);
+  --d-fast: 150ms;
+  --d-base: 250ms;
+  --e-standard: cubic-bezier(0.2, 0.7, 0, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--dark);
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
