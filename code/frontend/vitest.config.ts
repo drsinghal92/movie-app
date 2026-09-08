@@ -19,6 +19,11 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["tests/unit/**/*.test.ts"],
+    // Data-layer tests hit one shared real Postgres instance and each
+    // resets its own tables in beforeEach; running test files in parallel
+    // lets one file's reset wipe another file's in-flight fixtures, so
+    // files run sequentially (within a file, tests still run in order).
+    fileParallelism: false,
   },
   resolve: {
     alias: {

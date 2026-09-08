@@ -6,7 +6,13 @@ import { defineConfig, devices } from "@playwright/test";
 // (real form submit, real click, real drag), never a substitute API call.
 export default defineConfig({
   testDir: "./tests/e2e",
-  fullyParallel: true,
+  // Each e2e spec seeds/cleans the same shared Postgres tables with an
+  // unscoped deleteMany in beforeAll/afterAll, so running spec files
+  // concurrently lets one file's cleanup wipe another's in-flight fixtures.
+  // Serialize across files; tests within a file still run in the order
+  // Playwright encounters them.
+  fullyParallel: false,
+  workers: 1,
   retries: process.env.CI ? 1 : 0,
   reporter: "line",
   use: {

@@ -1,0 +1,26 @@
+story: S-003
+title: Search and filter movies
+verdict: PASS
+gated_at: 2026-09-08 10:26
+tests: green
+failing_cases: []
+acceptance_met: true
+ui_verified: PASS
+security: skipped
+review: skipped
+findings:
+  - source: qa
+    severity: low
+    what: "search-client.tsx debounces requests with an AbortController on unmount/refire but no test asserts stale-response ordering under fast retyping; low risk, pattern is correct on inspection"
+    outcome: recorded
+  - source: qa
+    severity: low
+    what: "search/page.tsx's getSearchFilters() failure path (page-level Errnote) is not exercised by any test; not named by any AC"
+    outcome: recorded
+escaped: null
+blocked: null
+pr: https://github.com/drsinghal92/movie-app/pull/4
+notes: 11/11 unit and 10/10 e2e pass; all three acceptance criteria proven; UI verification clause satisfied via real search input typing and real select-dropdown interaction against a live built server. Security and adversarial review skipped, sketch mode.
+waiver:
+  reason: null
+  approved_by: null

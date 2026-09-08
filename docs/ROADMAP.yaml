@@ -22,9 +22,9 @@ epics:
         title: Search and filter movies
         depends_on: [S-001]
         autonomy: unattended
-        status: todo
-        gate: null
-        pr: null
+        status: in-review
+        gate: docs/gates/S-003.yml
+        pr: https://github.com/drsinghal92/movie-app/pull/4
   - id: E02
     title: Founder curation
     goal: The founder can maintain the yearly top-10 lists without developer help.
