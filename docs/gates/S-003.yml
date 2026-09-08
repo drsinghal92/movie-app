@@ -19,7 +19,7 @@ findings:
     outcome: recorded
 escaped: null
 blocked: null
-pr: null
+pr: https://github.com/drsinghal92/movie-app/pull/4
 notes: 11/11 unit and 10/10 e2e pass; all three acceptance criteria proven; UI verification clause satisfied via real search input typing and real select-dropdown interaction against a live built server. Security and adversarial review skipped, sketch mode.
 waiver:
   reason: null
