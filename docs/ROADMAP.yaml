@@ -22,7 +22,7 @@ epics:
         title: Search and filter movies
         depends_on: [S-001]
         autonomy: unattended
-        status: todo
+        status: in-progress
         gate: null
         pr: null
   - id: E02
